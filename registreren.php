@@ -1,6 +1,8 @@
 <?php
     session_start();
 ?>
+
+<!-- hier wordt bootstrap gelinkt -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Document</title>
 </head>
+<!-- hier staat de registratie formulier -->
 <body>
     <div class="container" style="border-radius: 10px;">
         <form action="Submit.php" method="post" class="align-content-center">
@@ -41,7 +44,8 @@
             </div>
             <button type="submit" name="registreren" class="btn btn-primary">Registreren</button>
             <?php 
-        
+
+// als de session 'error' is gezet dan komt er een pop-up melding waarop staat dat niet alle velden ingevult zijn. Daarna wordt de session leeg gehaald zodat je niet opnieuw dezelfde melding krijgt
                 if(isset($_SESSION['error']))
                 {
                     ?>
