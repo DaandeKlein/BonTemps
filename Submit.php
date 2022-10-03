@@ -13,14 +13,14 @@
         
         if(mysqli_num_rows($result) == 1)
         {
-            header("Location: http://localhost/project7/OverzichtKlant.php"); /* Redirect browser */
+            header("Location: OverzichtKlant.php"); /* Redirect browser */
             exit();
         }
 
         else
         {
             $_SESSION['error'] = "error";
-            header("Location: http://localhost/project7/inlog.php"); /* Redirect browser */
+            header("Location: inlog.php"); /* Redirect browser */
             exit();
         }
     }
@@ -39,7 +39,7 @@
             if($Telefoon >= 1000000000)
             {
                 $_SESSION['error'] = "error";
-                header("Location: http://localhost/project7/registreren.php");
+                header("Location: registreren.php");
             }
             else
             {
@@ -47,7 +47,7 @@
             $sql = "INSERT INTO klanten (Naam, Email, Adres, Postcode, Telefoon, Wachtwoord) 
             VALUES (?, ?, ?, ?, ?, ?);";
             $pdo->prepare($sql)->execute([$Naam, $Email, $Adres, $Postcode, $Telefoon, $Wachtwoord]);
-            header("Location: http://localhost/project7/OverzichtKlant.php"); /* Redirect browser */
+            header("Location: OverzichtKlant.php"); /* Redirect browser */
             exit(); 
         
             }
@@ -55,7 +55,7 @@
         else
         {
             $_SESSION['error'] = "error";
-            header("Location: http://localhost/project7/registreren.php");
+            header("Location: registreren.php");
         }        
     }
     
