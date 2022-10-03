@@ -2,6 +2,7 @@
 session_start();
 ?>
 
+<!-- hier wordt bootstrap gelinkt -->
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -13,6 +14,8 @@ session_start();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Document</title>
 </head>
+
+<!-- hier wordt de inlog formulier gemaakt -->
 <body>
     <div class="container" id="formulier">
         <div class="row justify-content-center">
@@ -29,7 +32,8 @@ session_start();
         </form>
         <p>Geen account? <a href="registreren.php"> Meld aan</a></p>
         <?php 
-        
+
+// als de session 'error' is gezet dan komt er een pop-up melding waarop staat dat de email of wachtwoord verkeerd is ingevuld. Daarna wordt de session leeg gehaald zodat je niet opnieuw dezelfde melding krijgt
             if(isset($_SESSION['error']))
             {
                 ?>
@@ -42,7 +46,8 @@ session_start();
             <?php
             unset($_SESSION['error']);
             }
-            
+
+// als de session 'ingelogd' is gezet dan komt er een pop-up melding waarop staat dat je uitgelogt bent. Daarna wordt de session leeg gehaald zodat je niet opnieuw dezelfde melding krijgt            
             elseif(isset($_SESSION['ingelogd']))
             {
                 ?>
@@ -56,6 +61,7 @@ session_start();
             unset($_SESSION['ingelogd']);
             }
 
+// dit is een extra else statement zodat als je geen error hebt dat er geen aparte error komt te staan zoals "deze if statement is undefined"
             else {
                 
             }
