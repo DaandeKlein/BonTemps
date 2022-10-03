@@ -13,6 +13,7 @@
         
         if(mysqli_num_rows($result) == 1)
         {
+            $_SESSION['ingelogd'] = $_POST['Email'];
             header("Location: OverzichtKlant.php"); /* Redirect browser */
             exit();
         }
@@ -58,7 +59,7 @@
             header("Location: registreren.php");
         }        
     }
-    
+
     else
     {
         echo "error 404";

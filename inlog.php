@@ -42,6 +42,23 @@ session_start();
             <?php
             unset($_SESSION['error']);
             }
+            
+            elseif(isset($_SESSION['ingelogd']))
+            {
+                ?>
+                
+                <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading"></h4>
+                <p>Je bent uitgelogt</p>
+                <p class="mb-0"></p>
+                </div>
+            <?php
+            unset($_SESSION['ingelogd']);
+            }
+
+            else {
+                
+            }
         ?>
         </div>
     </div>

@@ -28,7 +28,7 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Mijn account</a></li>
-                                <li><a class="dropdown-item" href="#">Uitloggen</a></li>
+                                <li><a class="dropdown-item" href="inlog.php">Uitloggen</a></li>
                             </ul>
                         </li>
                     </ul>
