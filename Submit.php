@@ -40,7 +40,6 @@
     {
 
 // de data van de formulier wordt in de variabelen gestopt
-        echo "registratie";
         $Naam = $_POST['Naam'];
         $Email = $_POST['Email'];
         $Adres = $_POST['Adres'];
