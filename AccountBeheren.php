@@ -1,5 +1,5 @@
 <?php
-    $PageName = "reservatie";
+    $PageName = "Accountbeheren";
     include("./assets/config.php");
     session_start();
 ?>
@@ -37,7 +37,7 @@
         </nav>
         <!-- Page content-->
 
-        
+
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
