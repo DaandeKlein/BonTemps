@@ -11,14 +11,17 @@
         $Email = $_POST['Email'];
         $Wachtwoord = $_POST['Wachtwoord'];
 
-        $sql = "SELECT * FROM klanten where Email='$Email' AND Wachtwoord='$Wachtwoord'";
+        $sql = "SELECT KlantID, Naam FROM klanten where Email='$Email' AND Wachtwoord='$Wachtwoord'";
         
         $result = mysqli_query($conn, $sql);
+
+        $row = $result->fetch_array();
 
 // Als de query uitvoerd kan worden, dan wordt de gebruiker doorgestuurd naar de OverzichtKlant pagina. Ook wordt de Session 'ingelogd' mee gegeven. Die slaat de email adres op.        
         if(mysqli_num_rows($result) == 1)
         {
-            $_SESSION['ingelogd'] = $_POST['Email'];
+            $_SESSION['ingelogd'] = $row['KlantID'];
+            $_SESSION['naam'] = $row['Naam'];
             header("Location: OverzichtKlant.php");
             exit();
         }
