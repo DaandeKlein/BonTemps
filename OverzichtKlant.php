@@ -84,6 +84,19 @@
         <div class="container">
             <div class="card-body">
                 <h4 class="card-title">Mijn reserveringen</h4>
+                <?php
+                if (isset($_SESSION['success']) && $_SESSION['success'] !='')
+                        {
+                            echo '<h2> '.$_SESSION['success'].' </h2>';
+                            unset($_SESSION['success']);
+                        }
+
+                        if (isset($_SESSION['status']) && $_SESSION['status'] !='')
+                        {
+                            echo '<h2 class="bg-info"> '.$_SESSION['status'].' </h2>';
+                            unset($_SESSION['status']);
+                        }
+                        ?>
                 <table id="reserveringsoverzicht_klant" class="table">
                     <thead>
                         <th>ID</th>
