@@ -2,6 +2,50 @@
     $PageName = "reservatie";
     include("./assets/config.php");
     session_start();
+
+        if(!isset($_SESSION["ingelogd"])){
+            header("location: inlog.php");
+            exit;
+        }else {
+            $USERNAME = $_SESSION['naam'];
+        }
+       
+        if(!isset($USERNAME)){
+            $USERNAME = "Account";
+        }
+
+        $query_klantreservering = "
+        Select
+           klantreservering,
+        From
+            bontemps
+        Where
+          bontemps.klantreservering = '".$_SESSION['ingelogd']."'
+        ";
+    
+        $table_klantreservering = "";
+    
+        $query_klantreservering_run = mysqli_query($con, $query_klantreservering);
+        if($query_klantreservering_run){
+          while ($row_klantreservering = mysqli_fetch_assoc($query_klantreservering_run)){
+            $table_klantreservering .= "<tr>";
+              $table_klantreservering .= "<td>";
+                $table_klantreservering .= $row_klantreservering['KlantID'];
+              $table_klantreservering .= "</td>";
+              $table_klantreservering .= "<td>";
+                $table_klantreservering .= $row_klantreservering['Datum'];
+              $table_klantreservering .= "</td>";
+              $table_klantreservering .= "<td>";
+                $table_klantreservering .= $row_klantreservering['Tijd'];
+              $table_klantreservering .= "</td>";
+              $table_klantreservering .= "<td>";
+                $table_klantreservering .= $row_klantreservering['Aantal'];
+              $table_klantreservering .= "</td>";
+            $table_klantreservering .= "</tr>";
+          }  
+        }
+
+       
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +67,10 @@
                 <a class="navbar-brand" href="index.php">Bon Temps</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">    
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="reservering.php">Nieuwe reservering</a></li> 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="account-user-name"><?php echo $USERNAME?></span></a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Mijn account</a></li>
                                 <li><a class="dropdown-item" href="inlog.php">Uitloggen</a></li>
@@ -48,6 +93,7 @@
                         <th>Bewerken</th>
                     </thead>
                     <tbody>
+                        <?= $table_klantreservering ?>
                     </tbody>
                 </table>
             </div>
