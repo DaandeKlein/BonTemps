@@ -8,10 +8,10 @@
     {
 
 // de formulier data wordt in variabelen gestopt en die variabelen worden in query gezet. De query checkt ofdat de Tijd en wachtwoord kloppen        
-        $Tijd = $_POST['Tijd'];
+        $Email = $_POST['Email'];
         $Wachtwoord = $_POST['Wachtwoord'];
 
-        $sql = "SELECT KlantID, Naam FROM klanten where Tijd='$Tijd' AND Wachtwoord='$Wachtwoord'";
+        $sql = "SELECT KlantID, Naam FROM klanten where Email='$Email' AND Wachtwoord='$Wachtwoord'";
         
         $result = mysqli_query($conn, $sql);
 
@@ -41,14 +41,14 @@
 
 // de data van de formulier wordt in de variabelen gestopt
         $Naam = $_POST['Naam'];
-        $Tijd = $_POST['Tijd'];
+        $Email = $_POST['Email'];
         $Adres = $_POST['Adres'];
         $Postcode = $_POST['Postcode'];
         $Telefoon = $_POST['Telefoon'];
         $Wachtwoord = $_POST['Wachtwoord'];
 
 // hier wordt gecheckt ofdat alle variabelen wel ingevuld zijn        
-        if(!empty($Naam && $Tijd && $Adres && $Postcode && $Telefoon && $Wachtwoord))
+        if(!empty($Naam && $Email && $Adres && $Postcode && $Telefoon && $Wachtwoord))
         {
 
 // hier wordt gecheckt ofdat de telefoon nummer niet meer dan 9 nummer zijn ingevuld (exclusief de 0 aan het begin van een telefoon nummer)
@@ -64,10 +64,11 @@
             else
             {
             
-            $_SESSION['ingelogd'] = $_POST['Tijd'];
-            $sql = "INSERT INTO klanten (Naam, Tijd, Adres, Postcode, Telefoon, Wachtwoord) 
+            $_SESSION['ingelogd'] = $_POST['Email'];
+            $_SESSION['naam'] = $Naam;
+            $sql = "INSERT INTO klanten (Naam, Email, Adres, Postcode, Telefoon, Wachtwoord) 
             VALUES (?, ?, ?, ?, ?, ?);";
-            $pdo->prepare($sql)->execute([$Naam, $Tijd, $Adres, $Postcode, $Telefoon, $Wachtwoord]);
+            $pdo->prepare($sql)->execute([$Naam, $Email, $Adres, $Postcode, $Telefoon, $Wachtwoord]);
             header("Location: OverzichtKlant.php"); /* Redirect browser */
             exit(); 
         
@@ -84,18 +85,15 @@
 // als de gebruiker op deze pagina terecht komt zonder een post in te vullen dan krijgt de gebruiker automatisch een error melding
     elseif(isset($_POST['reservering']))
     {
-        $KlantID = $_POST['KlantID'];
+        $KlantID = $_SESSION['ingelogd'];
         $Datum = $_POST['Datum'];
         $Tijd = $_POST['Tijd'];
         $Aantal = $_POST['Aantal'];
     
-        $sql = "INSERT INTO klantreservering (KlantID, Datum, Tijd, Aantal) 
+        $sql = "INSERT INTO `klantreservering` (`KlantID`, `Datum`, `Tijd`, `Aantal`) 
                 VALUES ('$KlantID', '$Datum', '$Tijd', '$Aantal');";
-            mysqli_query($conn, $sql);
+            $qry = $conn -> query($sql);
 
-            var_dump($query_run);
-            die;
-    
             if($query_run)
             {
                 $_SESSION['success'] = "Uw reservering is geplaatst";
