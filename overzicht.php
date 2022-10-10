@@ -25,7 +25,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">    
-                    <li class="nav-item"><a class="nav-link" href="#">Nieuwe reservering</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="reserveringmedewerker.php">reservering invoegen</a></li> 
                     </ul>
                 </div>
             </div>
@@ -49,9 +49,13 @@
                 </table>
             </div>
         </div>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method=POST>
+
+        </form> 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
     </body>
 </html>
+

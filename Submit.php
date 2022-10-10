@@ -105,6 +105,32 @@
                 header('Location: overzichtklant.php'); 
             }
     }
+   
+
+    elseif(isset($_POST['reserveringmedewerker']))
+    {
+        $KlantID = $_POST['KlantID'];
+        $Naam = $_POST['Naam'];
+        $Datum = $_POST['Datum'];
+        $Tijd = $_POST['Tijd'];
+        $Aantal = $_POST['Aantal'];
+        $Tafelnummer = $_POST['Tafelnummer'];
+    
+        $sql = "INSERT INTO `reserveringen` (`KlantID`, `Naam`, `Datum`, `Tijd`, `Aantal`, `Tafelnummer`) 
+                VALUES ('$KlantID', '$Naam', '$Datum', '$Tijd', '$Aantal', '$Tafelnummer');";
+            $qry = $conn -> query($sql);
+
+            if($query_run)
+            {
+                $_SESSION['success'] = "Reservering toegevoegd";
+                header('Location: overzicht.php'); 
+            }
+            else
+            {
+                $_SESSION['status'] = "Reservering niet toegevoegd";
+                header('Location: overzicht.php'); 
+            }
+    }
 
     else
     {
