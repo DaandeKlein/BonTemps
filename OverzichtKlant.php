@@ -72,7 +72,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="account-user-name"><?php echo $USERNAME?></span></a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Mijn account</a></li>
+                                <li><a class="dropdown-item" href="Accountbeheren.php">Mijn account</a></li>
                                 <li><a class="dropdown-item" href="inlog.php">Uitloggen</a></li>
                             </ul>
                         </li>

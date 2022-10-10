@@ -58,6 +58,7 @@
 // als de telefoon nummer te lang is, dan wordt de gebruiker terug naar de registratie pagina gestuurd. Ook komt er een error session mee.
                 $_SESSION['error'] = "error";
                 header("Location: registreren.php");
+                exit();
             }
 
 // als de telefoon nummer wel geldig is. Dan worden de gegevens in de query gestopt en de query stopt de data in de database. Daarna wordt de gebruiker doorgestuurd naar de OverzichtKlant pagina gestuurd
@@ -79,6 +80,7 @@
         {
             $_SESSION['error'] = "error";
             header("Location: registreren.php");
+            exit();
         }        
     }
 
@@ -97,12 +99,14 @@
             if($query_run)
             {
                 $_SESSION['success'] = "Uw reservering is geplaatst";
-                header('Location: overzichtklant.php'); 
+                header('Location: overzichtklant.php');
+                exit(); 
             }
             else
             {
                 $_SESSION['status'] = "Uw reservering is niet geplaatst";
-                header('Location: overzichtklant.php'); 
+                header('Location: overzichtklant.php');
+                exit(); 
             }
     }
    
@@ -123,15 +127,34 @@
             if($query_run)
             {
                 $_SESSION['success'] = "Reservering toegevoegd";
-                header('Location: overzicht.php'); 
+                header('Location: overzicht.php');
+                exit(); 
             }
             else
             {
                 $_SESSION['status'] = "Reservering niet toegevoegd";
-                header('Location: overzicht.php'); 
+                header('Location: overzicht.php');
+                exit(); 
             }
     }
 
+    elseif(isset($_POST['accountWijzigen']))
+    {
+        $Naam = $_POST['Naam'];
+        $Email = $_POST['Email'];
+        $Adres = $_POST['Adres'];
+        $Postcode = $_POST['Postcode'];
+        $Telefoon = $_POST['Telefoon'];
+
+        $sql = "UPDATE klanten SET Naam=?, Email=?, Adres=?, Postcode=?, Telefoon=? WHERE KlantID=?";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$Naam, $Email, $Adres, $Postcode, $Telefoon, $_SESSION['ingelogd']]);
+        
+        header('Location: AccountBeheren.php');
+        exit();
+    }
+   
+   
     else
     {
         echo "error 404";
