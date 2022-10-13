@@ -37,7 +37,7 @@
         <!-- Page content-->
 
     <div class="d-flex justify-content-center">
-        <form class="form-control mt-5 w-75 ">
+        <form class="form-control mt-5 w-75 " action="Submit.php" method="post" name="accountverwijderen">
                 <div class="row mb-3">   
                     <div class="col">
                         <label class="form-label" for="VoorbeeldNaamInput">Naam:</label>
@@ -62,14 +62,12 @@
                     <div>
                         <label class="form-label" for="VoorbeeldAdresInput">Wachtwoord:</label>
                         <input type="text" class="form-control" placeholder="**************" aria-label="First Email" disabled>
-                        <a href="inlog.php" class="link-info">wachtwoord weizigen</a>
+                        <a href="wachtwoordWijzigen.php" class="link-info">wachtwoord weizigen</a>
                     </div>
                 </div>                        
             <div class="text-left float-left">
-                <form class="">
                     <a type="button" href="accountWijzigen.php" class="btn btn-warning">Accountgegevens wijzigen</a>
-                    <a type="button" href="inlog.php" class="btn btn-danger">Account verwijderen</a>
-                </form>
+                    <button type="submit" name="accountverwijderen" class="btn btn-danger" onclick="return confirm('wilt u definitief uw account verwijderen')">Account verwijderen</button>
             </div>
         </form>
     </div>

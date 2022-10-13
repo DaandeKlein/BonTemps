@@ -43,6 +43,7 @@
                 </div>                        
                 <div class="text-left float-left">
                     <button type="submit" name="accountWijzigen" class="btn btn-primary">Accountgegevens wijzigen</button>
+                    <a type="button" name="annuleren" href="AccountBeheren.php" class="btn btn-secondary">Annuleren</a>
                 </div>
         </form>
     </div>

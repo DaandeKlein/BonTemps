@@ -154,11 +154,58 @@
         exit();
     }
    
-   
+    elseif(isset($_POST['wachtwoordWijzigen']))
+    {
+        $oud = $_POST["OudWachtwoord"];
+        $nieuw = $_POST["NieuwWachtwoord"];
+        $nieuw2 = $_POST["NieuwWachtwoord2"];
+
+        if(!empty($oud && $nieuw && $nieuw2) && $nieuw == $nieuw2)
+            {
+                    $ID = $_SESSION['ingelogd'];
+                    $sql = "SELECT Wachtwoord FROM klanten where KlantID='$ID'";
+            
+                    $result = mysqli_query($conn, $sql);
+            
+                    $row = $result->fetch_array();
+                    
+                    if($oud == $row['Wachtwoord'])
+                    {
+                        $sql = "UPDATE klanten SET Wachtwoord=? WHERE KlantID=?";
+                        $stmt= $pdo->prepare($sql);
+                        $stmt->execute([$nieuw, $_SESSION['ingelogd']]);
+
+                        header('Location: AccountBeheren.php');
+                        exit();
+                    }
+                    else
+                    {
+                        echo "fout";
+                    }
+            }
+
+        else
+        {
+            echo "niet alle velden zijn ingevuld";
+        }
+    }
+    
+    elseif(isset($_POST['accountverwijderen']))
+    {
+        $ID = $_SESSION['ingelogd'];
+        
+        $sql = "DELETE FROM klanten WHERE KlantID=? ";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$ID]);
+        
+        header('Location: inlog.php');
+        exit();        
+    }
+
     else
     {
         echo "error 404";
     }
-    
+ 
 
 ?>
