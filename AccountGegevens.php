@@ -18,6 +18,7 @@
             $_SESSION['DataFieldAdres'] = $row['Adres'];
             $_SESSION['DataFieldPostcode'] = $row['Postcode'];
             $_SESSION['DataFieldTelefoon'] = $row['Telefoon'];
+            $_SESSION['DataFieldWachtwoord'] = $row['Wachtwoord'];
         }
         else
         {

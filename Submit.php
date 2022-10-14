@@ -70,6 +70,18 @@
             $sql = "INSERT INTO klanten (Naam, Email, Adres, Postcode, Telefoon, Wachtwoord) 
             VALUES (?, ?, ?, ?, ?, ?);";
             $pdo->prepare($sql)->execute([$Naam, $Email, $Adres, $Postcode, $Telefoon, $Wachtwoord]);
+
+            if(isset($pdo))
+            {
+                $sql = "SELECT KlantID FROM klanten WHERE Email='$Email' AND Wachtwoord='$Wachtwoord'";
+
+                $result = mysqli_query($conn, $sql);
+
+                $row = $result->fetch_array();
+
+                $_SESSION['ingelogd'] = $row['KlantID'];
+            }
+
             header("Location: OverzichtKlant.php"); /* Redirect browser */
             exit(); 
         
@@ -150,6 +162,7 @@
         $stmt= $pdo->prepare($sql);
         $stmt->execute([$Naam, $Email, $Adres, $Postcode, $Telefoon, $_SESSION['ingelogd']]);
         
+        $_SESSION['wijzig'] = "Account is succesvol gewijzigd";
         header('Location: AccountBeheren.php');
         exit();
     }
@@ -175,18 +188,23 @@
                         $stmt= $pdo->prepare($sql);
                         $stmt->execute([$nieuw, $_SESSION['ingelogd']]);
 
+                        $_SESSION['wachtwoordwijzig'] = "Wachtwoord is succesvol gewijzigd";
                         header('Location: AccountBeheren.php');
                         exit();
                     }
                     else
                     {
-                        echo "fout";
+                        $_SESSION['oudwachtwoord'] = "Oud wachtwoord is verkeerd";
+                        header('Location: wachtwoordWijzigen.php');
+                        exit();
                     }
             }
 
         else
         {
-            echo "niet alle velden zijn ingevuld";
+            $_SESSION['OudEnNieuwWachtwoord'] = "Oud wachtwoord of nieuw wachtwoord is verkeerd ingevuld";
+            header('Location: wachtwoordWijzigen.php');
+            exit();
         }
     }
     
@@ -198,6 +216,7 @@
         $stmt= $pdo->prepare($sql);
         $stmt->execute([$ID]);
         
+        $_SESSION['Accountverwijderen'] = "uw account is succesvol verwijderd";
         header('Location: inlog.php');
         exit();        
     }

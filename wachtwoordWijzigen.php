@@ -37,6 +37,36 @@
                     <button type="submit" name="wachtwoordWijzigen" class="btn btn-primary">Wachtwoord wijzigen</button>
                     <a type="button" name="annuleren" href="AccountBeheren.php" class="btn btn-secondary">Annuleren</a>
                 </div>
+
+            <?php 
+                if(isset($_SESSION['oudwachtwoord']))
+                {
+                    ?>
+                    
+                    <div class="alert alert-danger mt-3" role="alert">
+                    <h4 class="alert-heading"></h4>
+                    <p>Oud wachtwoord is verkeerd ingevuld</p>
+                    <p class="mb-0"></p>
+                    </div>     
+                <?php  
+                unset($_SESSION['oudwachtwoord']);      
+                }        
+            ?>
+
+            <?php 
+                if(isset($_SESSION['OudEnNieuwWachtwoord']))
+                {
+                    ?>
+                    
+                    <div class="alert alert-danger mt-3" role="alert">
+                    <h4 class="alert-heading"></h4>
+                    <p>Oud wachtwoord of nieuw wachtwoord is verkeerd ingevuld</p>
+                    <p class="mb-0"></p>
+                    </div>     
+                <?php  
+                unset($_SESSION['OudEnNieuwWachtwoord']);      
+                }        
+            ?>
         </form>
     </div>
         <!-- Bootstrap core JS-->

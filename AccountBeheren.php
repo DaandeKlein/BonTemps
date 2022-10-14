@@ -19,7 +19,7 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="index.php">Bon Temps</a>
+                <a class="navbar-brand" href="OverzichtKlant.php">Bon Temps</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">    
@@ -69,6 +69,37 @@
                     <a type="button" href="accountWijzigen.php" class="btn btn-warning">Accountgegevens wijzigen</a>
                     <button type="submit" name="accountverwijderen" class="btn btn-danger" onclick="return confirm('wilt u definitief uw account verwijderen')">Account verwijderen</button>
             </div>
+
+            <?php 
+                if(isset($_SESSION['wijzig']))
+                {
+                    ?>
+                    
+                    <div class="alert alert-success mt-3" role="alert">
+                    <h4 class="alert-heading"></h4>
+                    <p>Accountgegevens zijn succesvol gewijzigd</p>
+                    <p class="mb-0"></p>
+                    </div>     
+                <?php  
+                unset($_SESSION['wijzig']);      
+                }
+            ?>
+
+            <?php 
+                if(isset($_SESSION['wachtwoordwijzig']))
+                {
+                    ?>
+                    
+                    <div class="alert alert-success mt-3" role="alert">
+                    <h4 class="alert-heading"></h4>
+                    <p>Wachtwoord is succesvol gewijzigd</p>
+                    <p class="mb-0"></p>
+                    </div>     
+                <?php  
+                unset($_SESSION['wachtwoordwijzig']);      
+                }
+            ?>
+
         </form>
     </div>
         <!-- Bootstrap core JS-->

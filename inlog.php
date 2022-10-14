@@ -34,7 +34,22 @@ session_start();
         <?php 
 
 // als de session 'error' is gezet dan komt er een pop-up melding waarop staat dat de email of wachtwoord verkeerd is ingevuld. Daarna wordt de session leeg gehaald zodat je niet opnieuw dezelfde melding krijgt
-            if(isset($_SESSION['error']))
+            
+            if(isset($_SESSION['Accountverwijderen']))
+            {
+                ?>
+                
+                <div class="alert alert-danger mt-3" role="alert">
+                <h4 class="alert-heading"></h4>
+                <p>Uw account is succesvol verwijderd</p>
+                <p class="mb-0"></p>
+                </div>     
+            <?php            
+            unset($_SESSION['ingelogd']);
+            unset($_SESSION['Accountverwijderen']); 
+            } 
+
+            elseif(isset($_SESSION['error']))
             {
                 ?>
                 
@@ -59,7 +74,7 @@ session_start();
                 </div>
             <?php
             unset($_SESSION['ingelogd']);
-            }
+            }       
 
 // dit is een extra else statement zodat als je geen error hebt dat er geen aparte error komt te staan zoals "deze if statement is undefined"
             else {
