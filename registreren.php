@@ -36,7 +36,7 @@
             </div>
             <div class="mb-3">
                 <label for="VoorbeeldTelefoonInput" class="form-label">Telefoonnummer:</label>
-                <input type="text" name="Telefoon" class="form-control" id="VoorbeeldTelefoonInput" placeholder="00-00000000" maxlength="10" required>
+                <input type="number" name="Telefoon" class="form-control" id="VoorbeeldTelefoonInput" placeholder="00-00000000" maxlength="10" required>
             </div>
             <div class="mb-3">
                 <label for="VoorbeeldWachtwoordInput" class="form-label">Wachtwoord</label>
