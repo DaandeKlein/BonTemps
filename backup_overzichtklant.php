@@ -1,9 +1,8 @@
 <?php
-//Connectie database
+    $PageName = "reservatie";
     include("./assets/config.php");
     session_start();
 
-//Als gebruiker niet is ingelogd en probeert op deze pagina te komen, wordt de klant naar de inlogpagina gestuurd.
         if(!isset($_SESSION["ingelogd"])){
             header("location: inlog.php");
             exit;
@@ -14,7 +13,7 @@
         if(!isset($USERNAME)){
             $USERNAME = "Account";
         }
-//Code die de ingelogde gebruiker selecteert
+
         $query_klantreservering = "
         Select *
         From
@@ -26,6 +25,28 @@
         $table_klantreservering = "";
     
         $query_klantreservering_run = mysqli_query($con, $query_klantreservering);
+        if($query_klantreservering_run){
+          while ($row_klantreservering = mysqli_fetch_assoc($query_klantreservering_run)){
+            $table_klantreservering .= "<tr>";
+              $table_klantreservering .= "<td>";
+                $table_klantreservering .= $row_klantreservering['Datum'];
+              $table_klantreservering .= "</td>";
+              $table_klantreservering .= "<td>";
+                $table_klantreservering .= $row_klantreservering['Tijd'];
+              $table_klantreservering .= "</td>";
+              $table_klantreservering .= "<td>";
+                $table_klantreservering .= $row_klantreservering['Aantal'];
+              $table_klantreservering .= "</td>";
+              $table_klantreservering .= "<td>";
+              $table_klantreservering .= "<form>";
+              $table_klantreservering .= "<button>Bewerken</button>"; 
+              $table_klantreservering .= "</form>"; 
+              $table_klantreservering .= "</td>";
+            $table_klantreservering .= "</tr>";
+          }  
+        }
+
+       
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,30 +93,7 @@
                         <th>Bewerken</th>
                     </thead>
                     <tbody>
-                    <?php
-                        if(mysqli_num_rows($query_klantreservering_run) > 0)
-                            {
-                            while ($row = mysqli_fetch_assoc($query_klantreservering_run)) 
-                            {
-                    ?>
-                    <tr>
-                        <td><?php echo $row['Datum'] ?></td>
-                        <td><?php echo $row['Tijd']?></td>
-                        <td><?php echo $row['Aantal']?></td>
-                        <td>
-                        <form action="OverzichtklantWijzigen.php" method="post">
-                            <input type="hidden" name="edit_customer" value="<?php echo $row['ID'] ?>">
-                            <button type="sumbit" name="UpdateResKlant" class="btn btn-primary"> Bewerken</button>
-                        </form>
-                        </td>
-                    </tr>
-                    <?php
-                    }
-                        }
-                        else{
-                            echo "Geen reserveringen gevonden";
-                        }
-                    ?>
+                        <?= $table_klantreservering?>
                     </tbody>
                 </table>
             </div>

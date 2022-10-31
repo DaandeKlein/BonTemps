@@ -14,18 +14,7 @@
         if(!isset($USERNAME)){
             $USERNAME = "Account";
         }
-//Code die de ingelogde gebruiker selecteert
-        $query_klantreservering = "
-        Select *
-        From
-            klantreservering
-        Where
-          KlantID = '".$_SESSION['ingelogd']."'
-        ";
-    
-        $table_klantreservering = "";
-    
-        $query_klantreservering_run = mysqli_query($con, $query_klantreservering);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,37 +52,42 @@
         <!-- Page content-->
         <div class="container">
             <div class="card-body">
-                <h4 class="card-title">Mijn reserveringen</h4>
-                <table id="reserveringsoverzicht_klant" class="table">
-                    <thead>
-                        <th>Datum</th>
-                        <th>Tijd</th>
-                        <th>Aantal personen</th>
-                        <th>Bewerken</th>
-                    </thead>
+                <h4 class="card-title">Reservering aanpassen</h4>
+                <table id="reserveringwijzigen_klant" class="table">
                     <tbody>
                     <?php
-                        if(mysqli_num_rows($query_klantreservering_run) > 0)
-                            {
-                            while ($row = mysqli_fetch_assoc($query_klantreservering_run)) 
-                            {
+                        if (isset($_POST['UpdateResKlant']))
+                        {
+                        $ID = $_POST['edit_customer'];
+                    
+                        $query = "SELECT * FROM klantreservering WHERE ID='$ID'";
+                        $query_run = mysqli_query($con, $query);
+
+                        foreach ($query_run as $row) 
+                        {
                     ?>
-                    <tr>
-                        <td><?php echo $row['Datum'] ?></td>
-                        <td><?php echo $row['Tijd']?></td>
-                        <td><?php echo $row['Aantal']?></td>
-                        <td>
-                        <form action="OverzichtklantWijzigen.php" method="post">
-                            <input type="hidden" name="edit_customer" value="<?php echo $row['ID'] ?>">
-                            <button type="sumbit" name="UpdateResKlant" class="btn btn-primary"> Bewerken</button>
+
+                        <form action="Sumbit.php" method="POST">
+
+                        <input type="hidden" name="ID" value="<?php echo $row['ID'] ?>">
+                        <div class="mb-3">
+                            <label> Datum </label>
+                            <input type="date" name="Datum" value="<?php echo $row['Datum']?>" class="form-control" id="Datum" placeholder="Datum" required>
+                        </div>
+                        <div class="mb-3">
+                            <label> Tijd </label>
+                            <input type="time" name="Tijd" value="<?php echo $row['Tijd']?>" class="form-control" id="Tijd" placeholder="Tijd" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Aantal klanten</label>
+                            <input type="tel" name="Aantal" value="<?php echo $row['Aantal']?>" class="form-control" id="Aantal" placeholder="Vul aantal personen" required minlength="1" maxlength="1">
+                        </div>
+                        <br>
+                            <button type="Submit" name="updatebtn" class="btn btn-primary"> Bewerken </button>
                         </form>
-                        </td>
-                    </tr>
-                    <?php
-                    }
-                        }
-                        else{
-                            echo "Geen reserveringen gevonden";
+
+                            <?php
+                            }
                         }
                     ?>
                     </tbody>

@@ -121,6 +121,29 @@
                 exit(); 
             }
     }
+
+    elseif(isset($_POST['updatebtn']))
+    {
+        $ID = $_POST['ID'];
+        $KlantID = $_POST['KlantID'];
+        $Datum = $_POST['Datum'];
+        $Tijd = $_POST['Tijd'];
+        $Aantal = $_POST['Aantal'];
+    
+        $query = " UPDATE klantreservering SET KlantID='$KlantID', Datum='$Datum', Tijd='$Tijd', Aantal='$Aantal' WHERE ID='$ID' ";
+        $query_run = mysqli_query($conn, $query);
+    
+        if($query_run)
+        {
+            $_SESSION['success'] = "Your Data is Updated";
+            header('Location: Overzichtklant.php'); 
+        }
+        else
+        {
+            $_SESSION['status'] = "Your Data is NOT Updated";
+            header('Location: Overzichtklant.php'); 
+        }
+    }
    
 
     elseif(isset($_POST['reserveringmedewerker']))
