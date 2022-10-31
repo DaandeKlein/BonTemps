@@ -38,7 +38,7 @@
                     </div>
                     <div>
                         <label class="form-label" for="VoorbeeldAdresInput">TelefoonNummer:</label>
-                        <input type="text" class="form-control" name="Telefoon" placeholder="<?php echo $_SESSION['DataFieldTelefoon']; ?>" value="<?php echo $_SESSION['DataFieldTelefoon']; ?>" maxlength="10">
+                        <input type="number" class="form-control" name="Telefoon" placeholder="<?php echo $_SESSION['DataFieldTelefoon']; ?>" value="<?php echo $_SESSION['DataFieldTelefoon']; ?>" maxlength="10">
                     </div>
                 </div>                        
                 <div class="text-left float-left">
