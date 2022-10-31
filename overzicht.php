@@ -3,6 +3,45 @@
     include("./assets/config.php");
     session_start();
 
+    $query_reserveringen = "
+    Select *
+    From
+        reserveringen
+    ";
+
+    $table_reserveringen = "";
+
+    $query_reserveringen_run = mysqli_query($con, $query_reserveringen);
+    if($query_reserveringen_run){
+      while ($row_reserveringen = mysqli_fetch_assoc($query_reserveringen_run)){
+        $table_reserveringen .= "<tr>";
+          $table_reserveringen .= "<td>";
+            $table_reserveringen .= $row_reserveringen['KlantID'];
+          $table_reserveringen .= "</td>";
+          $table_reserveringen .= "<td>";
+            $table_reserveringen .= $row_reserveringen['Naam'];
+          $table_reserveringen .= "</td>";
+          $table_reserveringen .= "<td>";
+            $table_reserveringen .= $row_reserveringen['Datum'];
+          $table_reserveringen .= "</td>";
+          $table_reserveringen .= "<td>";
+          $table_reserveringen .= $row_reserveringen['Tijd'];
+        $table_reserveringen .= "</td>";
+        $table_reserveringen .= "<td>";
+        $table_reserveringen .= $row_reserveringen['Aantal'];
+      $table_reserveringen .= "</td>";
+      $table_reserveringen .= "<td>";
+      $table_reserveringen .= $row_reserveringen['Tafelnummer'];
+    $table_reserveringen .= "</td>";
+          $table_reserveringen .= "<td>";
+          $table_reserveringen .= "<form>";
+          $table_reserveringen .= "<button></button>"; 
+          $table_reserveringen .= "</form>"; 
+          $table_reserveringen .= "</td>";
+        $table_reserveringen .= "</tr>";
+      }  
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,11 +79,11 @@
                         <th>Naam</th>
                         <th>Datum</th>
                         <th>Tijd</th>
-                        <th>Bewerken</th>
                         <th>Aantal Personen</th>
+                        <th>Tafelnummer</th>
                     </thead>
                     <tbody>
-
+                        <?= $table_reserveringen?>
                     </tbody>
                 </table>
             </div>
