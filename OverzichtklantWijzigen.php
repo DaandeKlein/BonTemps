@@ -14,7 +14,29 @@
         if(!isset($USERNAME)){
             $USERNAME = "Account";
         }
+        elseif(isset($_POST['updatebtn']))
+        {
 
+            $ID = $_POST['ID'];
+            $KlantID = $_POST['KlantID'];
+            $Datum = $_POST['Datum'];
+            $Tijd = $_POST['Tijd'];
+            $Aantal = $_POST['Aantal'];
+        
+            $query = " UPDATE `klantreservering` SET `KlantID`='$KlantID', `Datum`='$Datum', `Tijd`='$Tijd', `Aantal`='$Aantal' WHERE `ID`='$ID' ";
+            $query_run = mysqli_query($con, $query);
+        
+            if($query_run)
+            {
+                $_SESSION['success'] = "Your Data is Updated";
+                header('Location: Overzichtklant.php'); 
+            }
+            else
+            {
+                $_SESSION['status'] = "Your Data is NOT Updated";
+                header('Location: Overzichtklant.php'); 
+            }
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,9 +89,10 @@
                         {
                     ?>
 
-                        <form action="Sumbit.php" method="POST">
+                        <form action="OverzichtklantWijzigen.php" method="POST">
 
                         <input type="hidden" name="ID" value="<?php echo $row['ID'] ?>">
+                        <input type="hidden" name="KlantID" value="<?php echo $row['KlantID'] ?>">
                         <div class="mb-3">
                             <label> Datum </label>
                             <input type="date" name="Datum" value="<?php echo $row['Datum']?>" class="form-control" id="Datum" placeholder="Datum" required>
@@ -79,7 +102,7 @@
                             <input type="time" name="Tijd" value="<?php echo $row['Tijd']?>" class="form-control" id="Tijd" placeholder="Tijd" required>
                         </div>
                         <div class="mb-3">
-                            <label>Aantal klanten</label>
+                            <label>Aantal personen</label>
                             <input type="tel" name="Aantal" value="<?php echo $row['Aantal']?>" class="form-control" id="Aantal" placeholder="Vul aantal personen" required minlength="1" maxlength="1">
                         </div>
                         <br>
