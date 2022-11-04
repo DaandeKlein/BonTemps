@@ -37,6 +37,29 @@
                 header('Location: Overzichtklant.php'); 
             }
         }
+        elseif(isset($_POST['deletebtn']))
+        {
+
+            $ID = $_POST['ID'];
+            $KlantID = $_POST['KlantID'];
+            $Datum = $_POST['Datum'];
+            $Tijd = $_POST['Tijd'];
+            $Aantal = $_POST['Aantal'];
+        
+            $query = " DELETE FROM `klantreservering` WHERE `ID`='$ID' ";
+            $query_run = mysqli_query($con, $query);
+        
+            if($query_run)
+            {
+                $_SESSION['success'] = "Your Data has been deleted";
+                header('Location: Overzichtklant.php'); 
+            }
+            else
+            {
+                $_SESSION['status'] = "Your Data has not been deleted";
+                header('Location: Overzichtklant.php'); 
+            }
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,11 +118,11 @@
                         <input type="hidden" name="KlantID" value="<?php echo $row['KlantID'] ?>">
                         <div class="mb-3">
                             <label> Datum </label>
-                            <input type="date" name="Datum" value="<?php echo $row['Datum']?>" class="form-control" id="Datum" placeholder="Datum" required>
+                            <input type="date" min='2022-11-04' max='2022-12-31' name="Datum" name="Datum" value="<?php echo $row['Datum']?>" class="form-control" id="Datum" placeholder="Datum" required>
                         </div>
                         <div class="mb-3">
                             <label> Tijd </label>
-                            <input type="time" name="Tijd" value="<?php echo $row['Tijd']?>" class="form-control" id="Tijd" placeholder="Tijd" required>
+                            <input type="time" name="Tijd" min="15:00" max="23:00" value="<?php echo $row['Tijd']?>" class="form-control" id="Tijd" placeholder="Tijd" required>
                         </div>
                         <div class="mb-3">
                             <label>Aantal personen</label>
@@ -107,8 +130,8 @@
                         </div>
                         <br>
                             <button type="Submit" name="updatebtn" class="btn btn-primary"> Bewerken </button>
+                            <button type="Submit" name="deletebtn" class="btn btn-danger"> Verwijderen </button>
                         </form>
-
                             <?php
                             }
                         }
