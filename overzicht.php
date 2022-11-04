@@ -12,36 +12,6 @@
     $table_reserveringen = "";
 
     $query_reserveringen_run = mysqli_query($con, $query_reserveringen);
-    if($query_reserveringen_run){
-      while ($row_reserveringen = mysqli_fetch_assoc($query_reserveringen_run)){
-        $table_reserveringen .= "<tr>";
-          $table_reserveringen .= "<td>";
-            $table_reserveringen .= $row_reserveringen['KlantID'];
-          $table_reserveringen .= "</td>";
-          $table_reserveringen .= "<td>";
-            $table_reserveringen .= $row_reserveringen['Naam'];
-          $table_reserveringen .= "</td>";
-          $table_reserveringen .= "<td>";
-            $table_reserveringen .= $row_reserveringen['Datum'];
-          $table_reserveringen .= "</td>";
-          $table_reserveringen .= "<td>";
-          $table_reserveringen .= $row_reserveringen['Tijd'];
-        $table_reserveringen .= "</td>";
-        $table_reserveringen .= "<td>";
-        $table_reserveringen .= $row_reserveringen['Aantal'];
-      $table_reserveringen .= "</td>";
-      $table_reserveringen .= "<td>";
-      $table_reserveringen .= $row_reserveringen['Tafelnummer'];
-    $table_reserveringen .= "</td>";
-          $table_reserveringen .= "<td>";
-          $table_reserveringen .= "<form>";
-          $table_reserveringen .= "<button></button>"; 
-          $table_reserveringen .= "</form>"; 
-          $table_reserveringen .= "</td>";
-        $table_reserveringen .= "</tr>";
-      }  
-    }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,17 +43,44 @@
         <div class="container">
             <div class="card-body">
                 <h4 class="card-title">Reserveringen Overzicht</h4>
-                <table id="reserveringsoverzicht" class="table">
+                <table id="reserveringsoverzicht_klant" class="table">
                     <thead>
-                        <th>ID</th>
+                        <th>KlantID</th>
                         <th>Naam</th>
                         <th>Datum</th>
                         <th>Tijd</th>
-                        <th>Aantal Personen</th>
+                        <th>AantalPersonen</th>
                         <th>Tafelnummer</th>
+                        <th>Bewerken</th>
                     </thead>
                     <tbody>
-                        <?= $table_reserveringen?>
+                    <?php
+                        if(mysqli_num_rows($query_reserveringen_run) > 0)
+                            {
+                            while ($row = mysqli_fetch_assoc($query_reserveringen_run)) 
+                            {
+                    ?>
+                    <tr>
+                        <td><?php echo $row['KlantID']?></td>
+                        <td><?php echo $row['Naam']?></td>
+                        <td><?php echo $row['Datum']?></td>
+                        <td><?php echo $row['Tijd']?></td>
+                        <td><?php echo $row['Aantal']?></td>
+                        <td><?php echo $row['Tafelnummer']?></td>
+                        <td>
+                        <form action="overzichtwijzigen.php" method="post">
+                            <input type="hidden" name="edit_medewerker" value="<?php echo $row['ReserveringID'] ?>">
+                            <button type="sumbit" name="UpdateResmedewerker" class="btn btn-primary"> Bewerken</button>
+                        </form>
+                        </td>
+                    </tr>
+                    <?php
+                    }
+                        }
+                        else{
+                            echo "Geen reserveringen gevonden";
+                        }
+                    ?>
                     </tbody>
                 </table>
             </div>
