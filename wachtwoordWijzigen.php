@@ -1,6 +1,7 @@
 <?php
     $PageName = "Accountbeheren";
     include('AccountGegevens.php');  
+    include('functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,21 +22,21 @@
         <form class="form-control m-5 w-75" action="Submit.php" method="post" name="wachtwoordWijzigen">
                 <div class="row mb-3">   
                     <div>
-                        <label class="form-label" for="VoorbeeldOudWachtwoord2Input">Oud Wachtwoord:</label>
+                        <label class="form-label" for="VoorbeeldOudWachtwoord2Input"><?php echo wachtwoordwijzigen_Oudwachtwoord($_SESSION['language']); ?></label>
                         <input type="password" class="form-control" name="OudWachtwoord" placeholder="**********" maxlength="255" required>
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldNieuwWachtwoordInput">Nieuw Wachtwoord:</label>
+                        <label class="form-label" for="VoorbeeldNieuwWachtwoordInput"><?php echo wachtwoordwijzigen_Nieuwwachtwoord($_SESSION['language']); ?></label>
                         <input type="password" class="form-control" name="NieuwWachtwoord" placeholder="**********" maxlength="255" required>
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldNieuwWachtwoord2Input">Nieuw Wachtwoord:</label>
+                        <label class="form-label" for="VoorbeeldNieuwWachtwoord2Input"><?php echo wachtwoordwijzigen_Nieuwwachtwoord($_SESSION['language']); ?></label>
                         <input type="password" class="form-control" name="NieuwWachtwoord2" placeholder="**********" maxlength="255" required>
                     </div>
                 </div>                        
                 <div class="text-left float-left">
-                    <button type="submit" name="wachtwoordWijzigen" class="btn btn-primary">Wachtwoord wijzigen</button>
-                    <a type="button" name="annuleren" href="AccountBeheren.php" class="btn btn-secondary">Annuleren</a>
+                    <button type="submit" name="wachtwoordWijzigen" class="btn btn-primary"><?php echo Accountbeheren_btnAccountWijzigen($_SESSION['language']); ?></button>
+                    <a type="button" name="annuleren" href="AccountBeheren.php" class="btn btn-secondary"><?php echo BtnAnnuleren($_SESSION['language']); ?></a>
                 </div>
 
             <?php 
@@ -45,7 +46,7 @@
                     
                     <div class="alert alert-danger mt-3" role="alert">
                     <h4 class="alert-heading"></h4>
-                    <p>Oud wachtwoord is verkeerd ingevuld</p>
+                    <p><?php echo wachtwoordwijzigen_MeldingOudWachtwoord($_SESSION['language']); ?></p>
                     <p class="mb-0"></p>
                     </div>     
                 <?php  
@@ -60,7 +61,7 @@
                     
                     <div class="alert alert-danger mt-3" role="alert">
                     <h4 class="alert-heading"></h4>
-                    <p>Oud wachtwoord of nieuw wachtwoord is verkeerd ingevuld</p>
+                    <p><?php echo wachtwoordwijzigen_MeldingOudNieuwWachtwoord($_SESSION['language']); ?></p>
                     <p class="mb-0"></p>
                     </div>     
                 <?php  

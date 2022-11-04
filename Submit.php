@@ -10,6 +10,7 @@
 // de formulier data wordt in variabelen gestopt en die variabelen worden in query gezet. De query checkt ofdat de Tijd en wachtwoord kloppen        
         $Email = $_POST['Email'];
         $Wachtwoord = $_POST['Wachtwoord'];
+        $_SESSION['language'] = $_POST['talen'];
 
         $sql = "SELECT KlantID, Naam FROM klanten where Email='$Email' AND Wachtwoord='$Wachtwoord'";
         
@@ -46,6 +47,7 @@
         $Postcode = $_POST['Postcode'];
         $Telefoon = $_POST['Telefoon'];
         $Wachtwoord = $_POST['Wachtwoord'];
+        $_SESSION['language'] = $_POST['talen'];
 
 // hier wordt gecheckt ofdat alle variabelen wel ingevuld zijn        
         if(!empty($Naam && $Email && $Adres && $Postcode && $Telefoon && $Wachtwoord))

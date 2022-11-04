@@ -19,30 +19,38 @@
     <div class="container" style="border-radius: 10px;">
         <form action="Submit.php" method="post" class="align-content-center">
             <div class="mb-3">
-                <label for="VoorbeeldNaamInput" class="form-label">Naam:</label>
+                <label for="VoorbeeldNaamInput" class="form-label">Name:</label>
                 <input type="text" name="Naam" class="form-control" id="VoorbeeldNaamInput" placeholder="Voor- en Achternaam" maxlength="255" required>
             </div>
             <div class="mb-3">
-                <label for="VoorbeeldEmailInput" class="form-label">E-mailadres:</label>
+                <label for="VoorbeeldEmailInput" class="form-label">E-mailaddress:</label>
                 <input type="email" name="Email" class="form-control" id="VoorbeeldEmailInput" aria-describedby="emailHelp" placeholder="E-mailadres" maxlength="255" required>
             </div>
             <div class="mb-3">
-                <label for="VoorbeeldAdresInput" class="form-label">Adres:</label>
+                <label for="VoorbeeldAdresInput" class="form-label">Address:</label>
                 <input type="text" name="Adres" class="form-control" id="VoorbeeldAdresInput" placeholder="Adres" maxlength="255" required>
             </div>
             <div class="mb-3">
-                <label for="VoorbeeldPostcodeInput" class="form-label">Postcode:</label>
+                <label for="VoorbeeldPostcodeInput" class="form-label">Postal code:</label>
                 <input type="text" name="Postcode" class="form-control" id="VoorbeeldPostcodeInput" placeholder="0000AA" maxlength="6" required>
             </div>
             <div class="mb-3">
-                <label for="VoorbeeldTelefoonInput" class="form-label">Telefoonnummer:</label>
-                <input type="number" name="Telefoon" class="form-control" id="VoorbeeldTelefoonInput" placeholder="00-00000000" maxlength="10" required>
+                <label for="VoorbeeldTelefoonInput" class="form-label">Phone number:</label>
+                <input type="tel" name="Telefoon" class="form-control" id="VoorbeeldTelefoonInput" placeholder="0000000000" maxlength="10" required>
             </div>
             <div class="mb-3">
-                <label for="VoorbeeldWachtwoordInput" class="form-label">Wachtwoord</label>
-                <input type="text" name="Wachtwoord" class="form-control" id="VoorbeeldWachtwoordInput" maxlength="255" required>
+                <label for="VoorbeeldWachtwoordInput" class="form-label">Password:</label>
+                <input type="password" name="Wachtwoord" class="form-control" id="VoorbeeldWachtwoordInput" maxlength="255" required>
             </div>
-            <button type="submit" name="registreren" class="btn btn-primary">Registreren</button>
+            <div class="mb-3">
+                <label for="VoorbeeldLanguageInput" class="form-label">Language:</label>
+                <select class="form-control form-select" name="talen">
+                    <option value="nl">Nederlands</option>
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                </select>
+            </div>
+            <button type="submit" name="registreren" class="btn btn-primary">Register</button>
             <?php 
 
 // als de session 'error' is gezet dan komt er een pop-up melding waarop staat dat niet alle velden ingevult zijn. Daarna wordt de session leeg gehaald zodat je niet opnieuw dezelfde melding krijgt
