@@ -1,6 +1,7 @@
 <?php
     $PageName = "Accountbeheren";
     include('AccountGegevens.php');  
+    include('functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,29 +22,29 @@
         <form class="form-control m-5 w-75" action="Submit.php" method="post" name="accountWijzigen">
                 <div class="row mb-3">   
                     <div class="col">
-                        <label class="form-label" for="VoorbeeldNaamInput">Naam:</label>
+                        <label class="form-label" for="VoorbeeldNaamInput"><?php echo Accountbeheren_Name($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" name="Naam" placeholder="<?php echo $_SESSION['DataFieldNaam']; ?>" value="<?php echo $_SESSION['DataFieldNaam']; ?>" maxlength="255">
                     </div>
                     <div class="col">
-                        <label class="form-label" for="VoorbeeldEmailInput">Email:</label>
+                        <label class="form-label" for="VoorbeeldEmailInput"><?php echo Accountbeheren_Email($_SESSION['language']); ?></label>
                         <input type="email" class="form-control" name="Email" placeholder="<?php echo $_SESSION['DataFieldEmail']; ?>" value="<?php echo $_SESSION['DataFieldEmail']; ?>" maxlength="255">
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldAdresInput">Adres:</label>
+                        <label class="form-label" for="VoorbeeldAdresInput"><?php echo Accountbeheren_Adres($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" name="Adres" placeholder="<?php echo $_SESSION['DataFieldAdres']; ?>" value="<?php echo $_SESSION['DataFieldAdres']; ?>" maxlength="255">
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldAdresInput">Postcode:</label>
+                        <label class="form-label" for="VoorbeeldAdresInput"><?php echo Accountbeheren_Postcode($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" name="Postcode" placeholder="<?php echo $_SESSION['DataFieldPostcode']; ?>" value="<?php echo $_SESSION['DataFieldPostcode']; ?>" maxlength="6">
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldAdresInput">TelefoonNummer:</label>
+                        <label class="form-label" for="VoorbeeldAdresInput"><?php echo Accountbeheren_Telefoonnummer($_SESSION['language']); ?></label>
                         <input type="number" class="form-control" name="Telefoon" placeholder="<?php echo $_SESSION['DataFieldTelefoon']; ?>" value="<?php echo $_SESSION['DataFieldTelefoon']; ?>" maxlength="10">
                     </div>
                 </div>                        
                 <div class="text-left float-left">
-                    <button type="submit" name="accountWijzigen" class="btn btn-primary">Accountgegevens wijzigen</button>
-                    <a type="button" name="annuleren" href="AccountBeheren.php" class="btn btn-secondary">Annuleren</a>
+                    <button type="submit" name="accountWijzigen" class="btn btn-primary"><?php echo Accountbeheren_btnAccountWijzigen($_SESSION['language']); ?></button>
+                    <a type="button" name="annuleren" href="AccountBeheren.php" class="btn btn-secondary"><?php echo BtnAnnuleren($_SESSION['language']); ?></a>
                 </div>
         </form>
     </div>

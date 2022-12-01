@@ -1,6 +1,7 @@
 <?php
     $PageName = "Accountbeheren";
-    include('AccountGegevens.php');  
+    include('AccountGegevens.php');
+    include('functions.php');  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,10 +25,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">    
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?php echo Navbar_Account($_SESSION['language']); ?></a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="Accountbeheren.php">Mijn account</a></li>
-                                <li><a class="dropdown-item" href="inlog.php">Uitloggen</a></li>
+                                <li><a class="dropdown-item" href="Accountbeheren.php"><?php echo Navbar_AccountBeheren($_SESSION['language']); ?></a></li>
+                                <li><a class="dropdown-item" href="inlog.php"><?php echo Navbar_Accountuitloggen($_SESSION['language']); ?></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -40,34 +41,34 @@
         <form class="form-control mt-5 w-75 " action="Submit.php" method="post" name="accountverwijderen">
                 <div class="row mb-3">   
                     <div class="col">
-                        <label class="form-label" for="VoorbeeldNaamInput">Naam:</label>
+                        <label class="form-label" for="VoorbeeldNaamInput"><?php echo Accountbeheren_Name($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" placeholder="<?php echo $_SESSION['DataFieldNaam']; ?>" aria-label="First name" disabled>
                     </div>
                     <div class="col">
-                        <label class="form-label" for="VoorbeeldEmailInput">Email:</label>
+                        <label class="form-label" for="VoorbeeldEmailInput"><?php echo Accountbeheren_Email($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" placeholder="<?php echo $_SESSION['DataFieldEmail']; ?>" aria-label="First Email" disabled>
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldAdresInput">Adres:</label>
+                        <label class="form-label" for="VoorbeeldAdresInput"><?php echo Accountbeheren_Adres($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" placeholder="<?php echo $_SESSION['DataFieldAdres']; ?>" aria-label="First Email" disabled>
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldAdresInput">Postcode:</label>
+                        <label class="form-label" for="VoorbeeldAdresInput"><?php echo Accountbeheren_Postcode($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" placeholder="<?php echo $_SESSION['DataFieldPostcode']; ?>" aria-label="First Email" disabled>
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldAdresInput">TelefoonNummer:</label>
+                        <label class="form-label" for="VoorbeeldAdresInput"><?php echo Accountbeheren_Telefoonnummer($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" placeholder="<?php echo $_SESSION['DataFieldTelefoon']; ?>" aria-label="First Email" disabled>
                     </div>
                     <div>
-                        <label class="form-label" for="VoorbeeldAdresInput">Wachtwoord:</label>
+                        <label class="form-label" for="VoorbeeldAdresInput"><?php echo Accountbeheren_Wachtwoord($_SESSION['language']); ?></label>
                         <input type="text" class="form-control" placeholder="**************" aria-label="First Email" disabled>
-                        <a href="wachtwoordWijzigen.php" class="link-info">wachtwoord weizigen</a>
+                        <a href="wachtwoordWijzigen.php" class="link-info"><?php echo Accountbeheren_btnWachtwoordWijzigen($_SESSION['language']); ?></a>
                     </div>
                 </div>                        
             <div class="text-left float-left">
-                    <a type="button" href="accountWijzigen.php" class="btn btn-warning">Accountgegevens wijzigen</a>
-                    <button type="submit" name="accountverwijderen" class="btn btn-danger" onclick="return confirm('wilt u definitief uw account verwijderen')">Account verwijderen</button>
+                    <a type="button" href="accountWijzigen.php" class="btn btn-warning"><?php echo Accountbeheren_btnAccountWijzigen($_SESSION['language']); ?></a>
+                    <button type="submit" name="accountverwijderen" class="btn btn-danger" onclick="return confirm('wilt u definitief uw account verwijderen')"><?php echo Accountbeheren_btnAccountVerwijderen($_SESSION['language']); ?></button>
             </div>
 
             <?php 
@@ -77,7 +78,7 @@
                     
                     <div class="alert alert-success mt-3" role="alert">
                     <h4 class="alert-heading"></h4>
-                    <p>Accountgegevens zijn succesvol gewijzigd</p>
+                    <p><?php echo Accountbeheren_meldingGegevens($_SESSION['language']); ?></p>
                     <p class="mb-0"></p>
                     </div>     
                 <?php  
@@ -92,7 +93,7 @@
                     
                     <div class="alert alert-success mt-3" role="alert">
                     <h4 class="alert-heading"></h4>
-                    <p>Wachtwoord is succesvol gewijzigd</p>
+                    <p><?php echo Accountbeheren_meldingWachtwoord($_SESSION['language']); ?></p>
                     <p class="mb-0"></p>
                     </div>     
                 <?php  

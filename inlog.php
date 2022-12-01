@@ -25,12 +25,20 @@ session_start();
                 <input type="email" name="Email" class="form-control" id="VoorbeeldEmailInput" aria-describedby="emailHelp" placeholder="E-mailadres" required>
             </div>
             <div class="mb-3">
-                <label for="VoorbeeldWachtwoordInput" class="form-label">Wachtwoord:</label>
+                <label for="VoorbeeldWachtwoordInput" class="form-label">Password:</label>
                 <input type="password" name="Wachtwoord" class="form-control" id="VoorbeeldWachtwoordInput" placeholder="Wachtwoord" required>
             </div>
-            <button type="submit" name="inlog" class="btn btn-primary">inloggen</button>
+            <div class="mb-3">
+                <label for="VoorbeeldLanguageInput" class="form-label">Language:</label>
+                <select class="form-control form-select" name="talen">
+                    <option value="nl">Nederlands</option>
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                </select>
+            </div>
+            <button type="submit" name="inlog" class="btn btn-primary">log in</button>
         </form>
-        <p>Geen account? <a href="registreren.php"> Meld aan</a></p>
+        <p>no account? <a href="registreren.php"> Register here</a></p>
         <?php 
 
 // als de session 'error' is gezet dan komt er een pop-up melding waarop staat dat de email of wachtwoord verkeerd is ingevuld. Daarna wordt de session leeg gehaald zodat je niet opnieuw dezelfde melding krijgt
